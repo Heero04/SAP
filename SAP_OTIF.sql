@@ -1,0 +1,13 @@
+SELECT 
+    VBAP.VBELN AS sales_order_id,
+    VBAP.KWMENG AS sales_order_quantity,
+    VBEP.EDATU AS planned_delivery_date,
+    LIPS.LFIMG AS delivery_quantity,
+    LIKP.LFDAT AS delivery_received_date
+FROM 
+    VBAP
+JOIN VBEP ON VBAP.VBELN = VBEP.VBELN AND VBAP.POSNR = VBEP.POSNR
+JOIN LIPS ON VBAP.VBELN = LIPS.VGBEL AND VBAP.POSNR = LIPS.VGPOS
+JOIN LIKP ON LIPS.VBELN = LIKP.VBELN
+ORDER BY 
+    VBAP.VBELN;
